@@ -1,0 +1,39 @@
+{
+  "name": "utilia",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "gen:search": "node scripts/generate-search-index.ts",
+    "validate": "node scripts/validate-registry.ts",
+    "predev": "npm run gen:search && npm run gen:deploy",
+    "dev": "next dev",
+    "prebuild": "npm run validate && npm run gen:search && npm run gen:deploy",
+    "build": "next build",
+    "test": "node --test \"tests/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "preview": "npx wrangler pages dev out",
+    "gen:deploy": "node scripts/generate-deploy-files.ts",
+    "audit:out": "node scripts/audit-output.ts"
+  },
+  "dependencies": {
+    "next": "^15.5.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.0.0",
+    "@tailwindcss/postcss": "^4.1.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.5.0",
+    "tailwindcss": "^4.1.0",
+    "typescript": "^5.6.0"
+  }
+}
